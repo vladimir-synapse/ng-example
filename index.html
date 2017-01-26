@@ -3,10 +3,45 @@
   <head>
     <meta charset="utf-8">
     <title>Angular go go</title>
+    <style>
+      .ng-invalid.ng-dirty {
+        border-color: #FA787E;
+      }
+      .ng-valid.ng-dirty {
+        border-color: #78FA89;
+      }
+    </style>
   </head>
   <body ng-app="mainApp">
-  <h1>Angular {{ 1 + 1 }}</h1>
+  <h1>Angular {{ 0.5 + 0.5 }}</h1>
+  <div ng-controller="MainController" ng-init="init()">
+    <h1>{{ data.name }}</h1>
+    <h2>{{ data.digit }}</h2>
+    <p>{{ data.description }}</p>
+    <br>
+    <button type="button" ng-click="change()">{{ data.condition ? 'Hide' : 'Show'}}</button>
+    <span ng-show="data.condition">show text</span>
+    <br>
+    <input type="text" ng-model="inputText">
+    <span>{{ inputText }}</span>
+    <hr>
+    <form name="testForm" ng-submit="testForm.$valid && submitForm(formData)" novalidate>
+      <p>Классы сами ставятся</p>
+      <select ng-model="formData.select" required>
+        <option value="1">option 1</option>
+        <option value="2">option 2</option>
+        <option value="3">option 3</option>
+      </select>
+      <input type="email" ng-model="formData.emali" name='testmail' required>
+      <input type="submit" value="Submit">
+      <div>Form is {{ testForm.$valid }}</div>
+    </form>
+    <test-directive></test-directive>
+    <div test-second></div>
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/controllers/MainController.js"></script>
+  <script src="js/services/exampleService.js"></script>
   </body>
 </html>
